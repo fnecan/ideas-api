@@ -1,8 +1,6 @@
 package flud.necan.util.requests;
 
-import flud.necan.api.v1.APIBaseTest;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Component;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
@@ -37,7 +35,7 @@ public class IdeasControllerRequests {
                     " \"name\": " + name + ",\n" +
                     " \"description\": " + description + ",\n" +
                     " \"imageUrl\": " + imageUrl + ",\n" +
-                    " \"tags\": " + tags + ",\n" +
+                    " \"tags\": " + tags.toString() + "\n" +
                     "}")
             );
     }
