@@ -16,7 +16,7 @@ public class IdeaDocument {
     private List<String> tags;
 
     public static IdeaOutDto toDto(IdeaDocument ideaDocument) {
-        return new IdeaOutDto(ideaDocument.getName(), ideaDocument.getDescription(), ideaDocument.getImageUrl(), ideaDocument.getTags());
+        return new IdeaOutDto(ideaDocument.getId(), ideaDocument.getName(), ideaDocument.getDescription(), ideaDocument.getImageUrl(), ideaDocument.getTags());
     }
 
     public IdeaDocument(String name, String description, String imageUrl, List<String> tags) {

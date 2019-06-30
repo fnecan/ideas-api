@@ -29,9 +29,10 @@ public class IdeasController {
 
     @GetMapping
     public Page<IdeaDocument> getIdeasList(Pageable pageable) {
-//        ArrayList<IdeaOutDto> ideasList = new ArrayList<>();
-//        ideasList.add(new IdeaOutDto("Test name", "Description", "http:dupa", null));
         return ideasService.getAllIdeas(pageable);
     }
+
+    // TODO: Add post mapping
+    // TODO: Add get mapping
 
 }
