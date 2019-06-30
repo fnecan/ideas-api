@@ -1,5 +1,7 @@
 package flud.necan.util.requests;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
@@ -14,8 +16,11 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 public class IdeasControllerRequests {
 
     private final MockMvc mvc;
+    private final ObjectMapper objectMapper;
+
 
     public IdeasControllerRequests(MockMvc mvc) {
+        this.objectMapper = new ObjectMapper();
         this.mvc = mvc;
     }
 
@@ -32,11 +37,11 @@ public class IdeasControllerRequests {
         return mvc.perform(post("/api/v1/ideas")
             .contentType(MediaType.APPLICATION_JSON_UTF8)
             .content("{\n" +
-                    " \"name\": " + name + ",\n" +
-                    " \"description\": " + description + ",\n" +
-                    " \"imageUrl\": " + imageUrl + ",\n" +
-                    " \"tags\": " + tags.toString() + "\n" +
-                    "}")
-            );
+                    " \"name\": " + objectMapper.writeValueAsString(name)+ ",\n" +
+                    " \"description\": " + objectMapper.writeValueAsString(description) + ",\n" +
+                    " \"imageUrl\": " + objectMapper.writeValueAsString(imageUrl) + ",\n" +
+                    " \"tags\": " + objectMapper.writeValueAsString(tags) + "\n" +
+                    "}"
+            ));
     }
 }
