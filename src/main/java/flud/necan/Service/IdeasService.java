@@ -30,4 +30,8 @@ public class IdeasService {
     public IdeaDocument addIdea(IdeaInDto ideaInDto) {
         return ideasRepository.save(new IdeaDocument(ideaInDto.getName(), ideaInDto.getDescription(), ideaInDto.getImageUrl(), ideaInDto.getTags()));
     }
+
+    public IdeaDocument getIdea(String ideaId) {
+        return ideasRepository.findById(ideaId).orElse(null);
+    }
 }

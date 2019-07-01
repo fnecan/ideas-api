@@ -32,7 +32,9 @@ public class IdeasController {
         return ideasService.getAllIdeas(pageable);
     }
 
+    @GetMapping("/{ideaId}")
+    public IdeaDocument getIdea(@PathVariable String ideaId) { return ideasService.getIdea(ideaId);}
+
     // TODO: Add post mapping
-    // TODO: Add get mapping
 
 }

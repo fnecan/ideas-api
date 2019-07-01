@@ -17,6 +17,8 @@ import java.util.Arrays;
 
 import static org.hamcrest.Matchers.equalTo;
 //import static org.springframework.test.web.client.match.MockRestRequestMatchers.jsonPath;
+import static org.hamcrest.Matchers.isEmptyOrNullString;
+import static org.hamcrest.Matchers.nullValue;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -43,6 +45,13 @@ public class IdeasControllerTest {
     }
 
     @Test
+    public void it_should_return_null_if_not_found() throws Exception {
+        ideasControllerRequests.getIdea("test")
+                .andExpect(status().is2xxSuccessful())
+                .andExpect(jsonPath("$").doesNotHaveJsonPath());
+    }
+
+    @Test
     public void it_should_return_details_on_idea() throws Exception {
         ResultActions res = ideasControllerRequests.postIdea()
                 .andExpect(status().is2xxSuccessful());
@@ -51,6 +60,7 @@ public class IdeasControllerTest {
         String ideaId = objectMapper.readTree(responseString).get("id").asText();
 
         ideasControllerRequests.getIdea(ideaId)
+                .andDo(print())
                 .andExpect(status().is2xxSuccessful())
                 .andExpect(jsonPath("$.id", equalTo(ideaId)));
     }
