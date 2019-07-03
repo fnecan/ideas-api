@@ -66,6 +66,24 @@ public class IdeasControllerTest {
     }
 
     @Test
+    public void it_should_succesfully_partially_update_idea() throws Exception {
+        ResultActions res = ideasControllerRequests.postIdea()
+                .andExpect(status().is2xxSuccessful());
+
+        String responseString = res.andReturn().getResponse().getContentAsString();
+        String ideaId = objectMapper.readTree(responseString).get("id").asText();
+
+        ideasControllerRequests.getIdea(ideaId).andExpect(jsonPath("$.name", equalTo("Test note")));
+        ideasControllerRequests.getIdea(ideaId).andExpect(jsonPath("$.description", equalTo("Test Description")));
+
+        ideasControllerRequests.updateIdea(ideaId, "New name", null, null, null)
+                .andExpect(status().is2xxSuccessful());
+
+        ideasControllerRequests.getIdea(ideaId).andExpect(jsonPath("$.name", equalTo("New name")));
+        ideasControllerRequests.getIdea(ideaId).andExpect(jsonPath("$.description", equalTo("Test Description")));
+    }
+
+    @Test
     public void it_should_succesfully_update_idea() throws Exception {
 
         ResultActions res = ideasControllerRequests.postIdea()
