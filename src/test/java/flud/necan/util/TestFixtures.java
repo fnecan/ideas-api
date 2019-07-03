@@ -14,7 +14,6 @@ public class TestFixtures {
     }
 
     public void cleanCollections() {
-        System.out.println("CLEANING COLLECTIONS");
         mongoTemplate.remove(new Query(), IdeaDocument.class);
     }
 }

@@ -32,18 +32,12 @@ public class IdeasController {
         return ideasService.getAllIdeas(pageable);
     }
 
-    @PatchMapping("/{ideaId")
-    public Boolean updateIdea(@PathVariable String ideaId) {
-        System.out.println("ABCDEFGH");
-        return ideasService.updateIdea(ideaId, null); }
+    @PatchMapping("/{ideaId}")
+    public Boolean updateIdea(@PathVariable String ideaId, @RequestBody IdeaInDto ideaInDto) {
+        return ideasService.updateIdea(ideaId, ideaInDto); }
 
     // TODO: Change update to return new document
 
     @GetMapping("/{ideaId}")
     public IdeaDocument getIdea(@PathVariable String ideaId) { return ideasService.getIdea(ideaId); }
-
-
-
-    // TODO: Add post mapping
-
 }

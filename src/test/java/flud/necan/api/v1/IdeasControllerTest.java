@@ -92,8 +92,9 @@ public class IdeasControllerTest {
         String responseString = res.andReturn().getResponse().getContentAsString();
         String ideaId = objectMapper.readTree(responseString).get("id").asText();
         ideasControllerRequests.updateIdea(ideaId, "new name", "new description", "http://example.com", new ArrayList<>(Arrays.asList("tagA","tagB")))
-                .andExpect(status().is2xxSuccessful())
-                .andExpect(jsonPath("$.name", equalTo("new name")));
+                .andExpect(status().is2xxSuccessful());
+
+        ideasControllerRequests.getIdea(ideaId).andExpect(status().isOk()).andExpect(jsonPath("$.name", equalTo("new name")));
     }
 
     @Test

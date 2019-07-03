@@ -22,10 +22,6 @@ public class IdeasRepositoryCustomImpl implements IdeasRepositoryCustom {
         Query query = new Query();
         query.addCriteria(Criteria.where("id").is(ideaId));
 
-        System.out.println("Query");
-        System.out.println(query.toString());
-        System.out.println("Update");
-        System.out.println(update.toString());
         UpdateResult res = mongoTemplate.updateFirst(query, update, IdeaDocument.class);
 
         return res.isModifiedCountAvailable();
