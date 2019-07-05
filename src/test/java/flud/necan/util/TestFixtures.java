@@ -1,5 +1,6 @@
 package flud.necan.util;
 
+import flud.necan.Models.CommentDocument;
 import flud.necan.Models.IdeaDocument;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Query;
@@ -15,5 +16,6 @@ public class TestFixtures {
 
     public void cleanCollections() {
         mongoTemplate.remove(new Query(), IdeaDocument.class);
+        mongoTemplate.remove(new Query(), CommentDocument.class);
     }
 }

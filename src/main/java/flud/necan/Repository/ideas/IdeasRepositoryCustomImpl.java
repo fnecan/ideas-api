@@ -1,4 +1,4 @@
-package flud.necan.Repository;
+package flud.necan.Repository.ideas;
 
 import com.mongodb.client.result.UpdateResult;
 import flud.necan.Models.IdeaDocument;
