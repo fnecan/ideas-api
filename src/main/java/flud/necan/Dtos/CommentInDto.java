@@ -18,6 +18,9 @@ public class CommentInDto {
         this.content = content;
     }
 
+    public CommentInDto() {
+    }
+
     public CommentInDto(String content) {
         this.content = content;
     }

@@ -29,6 +29,7 @@ public class CommentsController {
 
     @PostMapping("/{ideaId}/comments")
     public CommentDocument addComment(@PathVariable String ideaId, @RequestBody @Valid CommentInDto commentInDto) {
+        System.out.println("New comment");
         return commentsService.addComment(ideaId, commentInDto);
     }
 

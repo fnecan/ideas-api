@@ -8,5 +8,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface CommentsRepository extends MongoRepository<CommentDocument, String>, CommentsRepositoryCustom {
     Page<CommentDocument> findByIdeaId(String ideaId, Pageable pageable);
-    CommentDocument findByIdeaIdAndCommentId(String ideaId, String commentId);
+    CommentDocument findByIdeaIdAndId(String ideaId, String commentId);
 }

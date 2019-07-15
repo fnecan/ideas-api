@@ -20,11 +20,11 @@ public class CommentsControllerRequests {
     }
 
     public ResultActions getComment(String ideaId, String commentId) throws Exception {
-        return mvc.perform(get("/api/v1/ideas/" + ideaId + "/comments/ + commentId"));
+        return mvc.perform(get("/api/v1/ideas/" + ideaId + "/comments/" + commentId));
     }
 
     public ResultActions getCommentsForIdea(String ideaId) throws Exception {
-        return mvc.perform(get("/api/v1/ideas/" + ideaId));
+        return mvc.perform(get("/api/v1/ideas/" + ideaId + "/comments"));
     }
     public ResultActions postCommentForIdea(String ideaId, String content) throws Exception {
         return mvc.perform(post("/api/v1/ideas/" +ideaId+ "/comments")
