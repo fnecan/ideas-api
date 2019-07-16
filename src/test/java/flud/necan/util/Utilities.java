@@ -12,4 +12,9 @@ public class Utilities {
          JsonNode mappedResponse = objectMapper.readTree(postIdeaResultActions.andReturn().getResponse().getContentAsString());
          return mappedResponse.get("id").asText();
     }
+    public static String commentIdFromRequest(ResultActions postCommentResultActions) throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode mappedResponse = objectMapper.readTree(postCommentResultActions.andReturn().getResponse().getContentAsString());
+        return mappedResponse.get("id").asText();
+    }
 }

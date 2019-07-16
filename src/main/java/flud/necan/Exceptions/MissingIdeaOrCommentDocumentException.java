@@ -4,8 +4,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.BAD_REQUEST)
-public class MissingIdeaDocumentException extends RuntimeException {
-    public MissingIdeaDocumentException(String message) {
+public class MissingIdeaOrCommentDocumentException extends RuntimeException {
+    public MissingIdeaOrCommentDocumentException(String message) {
         super(message);
     }
 }

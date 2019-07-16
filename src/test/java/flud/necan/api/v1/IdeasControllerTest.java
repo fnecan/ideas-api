@@ -16,9 +16,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import static org.hamcrest.Matchers.equalTo;
-//import static org.springframework.test.web.client.match.MockRestRequestMatchers.jsonPath;
-import static org.hamcrest.Matchers.isEmptyOrNullString;
-import static org.hamcrest.Matchers.nullValue;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;

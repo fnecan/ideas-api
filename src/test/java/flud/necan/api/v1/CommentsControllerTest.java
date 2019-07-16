@@ -41,6 +41,30 @@ public class CommentsControllerTest {
     }
 
     @Test
+    public void it_should_return_400_when_provided_with_invalid_parameters_when_upvoting() throws Exception {
+        String ideaId = Utilities.ideaIdFromRequest(ideasControllerRequests.postIdea());
+        String commentId = Utilities.commentIdFromRequest(commentsControllerRequests.postCommentForIdea(ideaId, "Test content"));
+        commentsControllerRequests.upvoteComment("invalidId", commentId)
+                .andExpect(status().isBadRequest());
+        commentsControllerRequests.upvoteComment("invalidId", "invalidId")
+                .andExpect(status().isBadRequest());
+        commentsControllerRequests.upvoteComment(ideaId, "invalidId")
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void it_should_upvote_a_comment() throws Exception {
+        String ideaId = Utilities.ideaIdFromRequest(ideasControllerRequests.postIdea());
+        String commentId = Utilities.commentIdFromRequest(commentsControllerRequests.postCommentForIdea(ideaId, "Test content"));
+        commentsControllerRequests.upvoteComment(ideaId, commentId)
+                .andExpect(status().isOk());
+        commentsControllerRequests.upvoteComment(ideaId, commentId)
+                .andExpect(status().isOk());
+        commentsControllerRequests.getComment(ideaId, commentId)
+                .andExpect(jsonPath("$.score", equalTo(2)));
+    }
+
+    @Test
     public void it_should_return_a_list_of_comments_for_idea() throws Exception {
         String ideaId = Utilities.ideaIdFromRequest(ideasControllerRequests.postIdea());
         String ideaIdTwo = Utilities.ideaIdFromRequest(ideasControllerRequests.postIdea());

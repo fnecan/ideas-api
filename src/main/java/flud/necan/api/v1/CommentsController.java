@@ -29,9 +29,11 @@ public class CommentsController {
 
     @PostMapping("/{ideaId}/comments")
     public CommentDocument addComment(@PathVariable String ideaId, @RequestBody @Valid CommentInDto commentInDto) {
-        System.out.println("New comment");
         return commentsService.addComment(ideaId, commentInDto);
     }
 
-
+    @PostMapping("/{ideaId}/comments/{commentId}/upvote")
+    public CommentDocument upvoteComment(@PathVariable String ideaId, @PathVariable String commentId) {
+        return commentsService.upvoteComment(ideaId, commentId);
+    }
 }

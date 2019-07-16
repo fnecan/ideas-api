@@ -1,7 +1,9 @@
 package flud.necan.Service;
 
+import com.mongodb.client.result.UpdateResult;
 import flud.necan.Dtos.CommentInDto;
 import flud.necan.Exceptions.MissingIdeaDocumentException;
+import flud.necan.Exceptions.MissingIdeaOrCommentDocumentException;
 import flud.necan.Models.CommentDocument;
 import flud.necan.Repository.comments.CommentsRepository;
 import flud.necan.Repository.ideas.IdeasRepository;
@@ -33,5 +35,11 @@ public class CommentsService {
 
     public Page<CommentDocument> getCommentsForIdea(String ideaId, Pageable pageable) {
         return commentsRepository.findByIdeaId(ideaId, pageable);
+    }
+
+    public CommentDocument upvoteComment(String ideaId, String commentId) {
+        UpdateResult updateResult = commentsRepository.upvoteComment(ideaId, commentId);
+        if(updateResult.getMatchedCount() == 0) throw new MissingIdeaOrCommentDocumentException("Unable to find comment of ideaId " + ideaId + " and id of " + commentId);
+        return new CommentDocument("abc", "test", 0);
     }
 }

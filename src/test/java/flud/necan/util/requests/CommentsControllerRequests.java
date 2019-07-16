@@ -33,4 +33,8 @@ public class CommentsControllerRequests {
                         " \"content\": " + objectMapper.writeValueAsString(content) + "\n" +
                         "}"));
     }
+
+    public ResultActions upvoteComment(String ideaId, String commentId) throws Exception {
+        return mvc.perform(post("/api/v1/ideas/" + ideaId + "/comments/" + commentId + "/upvote"));
+    }
 }
